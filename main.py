@@ -15,7 +15,8 @@ mypayment.set_urls(success_url='example.com/success',
                    ipn_url='example.com/payment_notification')
 
 mypayment.set_product_integration(total_amount=Decimal('20.20'),
-                                  currency='BDT', product_category='clothing',
+                                  currency='BDT',
+                                  product_category='clothing',
                                   product_name='demo-product',
                                   num_of_item=2,
                                   shipping_method='YES',
@@ -43,4 +44,11 @@ mypayment.set_additional_values(value_a='cusotmer@email.com',
                                 value_d='uuid')
 
 response_data = mypayment.init_payment()
-print(response_data)
+
+status = response_data['status']
+sessionkey = response_data['sessionkey']
+GatewayPageURL =response_data['GatewayPageURL']
+
+print(f'connection : {status} \nsessionKey : {sessionkey}\nGateway Page URL : {GatewayPageURL} ')
+
+
